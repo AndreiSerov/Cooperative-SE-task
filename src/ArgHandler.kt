@@ -2,7 +2,7 @@ import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
 
-class ArgHandler(private val args: Array<String>) {
+class ArgHandler(args: Array<String>) {
 
     private val parser = ArgParser("app.jar")
 
@@ -13,23 +13,23 @@ class ArgHandler(private val args: Array<String>) {
     val pass: String? by parser
             .option(ArgType.String, shortName = "pass")
 
-    val res by parser
+    val res: String by parser
             .option(ArgType.String, shortName = "res")
             .default("")
 
-    val role by parser
+    val role: String by parser
             .option(ArgType.String, shortName = "role")
             .default("")
 
-    val ds by parser
+    val ds: String by parser
             .option(ArgType.String, shortName = "ds")
             .default("")
 
-    val de by parser
+    val de: String by parser
             .option(ArgType.String, shortName = "de")
             .default("")
 
-    val vol by parser
+    val vol: String by parser
             .option(ArgType.String, shortName = "vol")
             .default("") //will convert to int in BusinessLogic
 

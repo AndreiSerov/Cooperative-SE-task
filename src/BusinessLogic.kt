@@ -6,16 +6,6 @@ import kotlin.system.exitProcess
 
 class BusinessLogic {
 
-    fun printHelp() {
-        println(
-                """
-                -h
-                -login
-                -pass
-                """.trimIndent()
-        )
-    }
-
     private fun isLoginValid(login: String): Boolean {
         val pattern = "^[a-z]{1,10}$".toRegex()
         return pattern.matches(login)
@@ -58,22 +48,20 @@ class BusinessLogic {
 
     private fun isRoleExists(role: String): Boolean = roles.contains(role)
 
-    fun authorization(resPath: String, role: String, username: String): Permission? {
-
+    fun authorization(resPath: String,
+                      role: String,
+                      username: String): Permission? {
 
         if (!isRoleExists(role)) exitProcess(5) //возвращаем код 5, если роль не существует
         //TODO
         //возможно, перенести в Main
 
         for (permission in permissions) {
-
             if (username == permission.username && role == permission.role) {
-
                 if (isChild(resPath, permission.resPath)) {
                     return permission
                 }
             }
-
         }
         return null
     }
