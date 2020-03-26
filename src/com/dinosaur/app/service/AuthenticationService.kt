@@ -21,7 +21,8 @@ class AuthenticationService(private val users: List<User>) {
         return ExitCodes.SUCCESS
     }
 
-    private fun isLoginValid(login: String): Boolean = "^[a-z]{1,10}$".toRegex().matches(login)
+    private fun isLoginValid(login: String): Boolean
+            = "^[a-z]{1,10}$".toRegex().matches(login)
 
     private fun findUser(login: String, users: List<User>): User? {
         for (user in users) {
@@ -32,7 +33,8 @@ class AuthenticationService(private val users: List<User>) {
         return null
     }
 
-    private fun checkPassword(pass: String, user: User) = pass.getHash(user.salt) == user.hash
+    private fun checkPassword(pass: String, user: User)
+            = pass.getHash(user.salt) == user.hash
 
     //stackoverflow driven development
     private fun String.getHash(salt: String,

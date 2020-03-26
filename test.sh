@@ -1,6 +1,9 @@
 #!/bin/bash
 
-function test() {
+
+function test() { # do another way
+    let "total+=1"
+
     test_name=$1
     params=$2
     expected_status=$3
@@ -10,12 +13,16 @@ function test() {
     if [ $actual_status -eq $expected_status ]
     then
     echo -e "\033[32m$test_name passed \033[0m"
+    let "success+=1"
     else
     echo -e "\033[31m$test_name failed \033[0m"
     fi
 
     echo -e "app.jar $params \nexpected: $expected_status \nactual: $actual_status \n"
 }
+
+total=0
+success=0
 
 test "T1.1" "" 1
 test "T1.2" "-h" 0 #было один 1 до подключения kotlinx.cli
@@ -38,3 +45,12 @@ test "T4.2" "-login vasya -pass 123 -res A -role READ -ds 2020.03.10 -de 2020.03
 test "T4.3" "-login vasya -pass 123 -res A -role READ -ds 2020-03-10 -de 2020-03-11 -vol aaaa"  7
 test "T4.4" "-login vasya -pass 123 -res A -role EXECUTE -ds 01.02.3012 -de 01.02.2030 -vol aaa"  6
 test "T4.5" "-login vasya -pass 123 -res A -role READ -ds 2020-03-11 -de 2020-03-10 -vol 100"  7
+
+if [ $success -eq $total ]
+    then
+    echo -e "\033[32m================== ${total} passed ==================\033[0m"
+    return 0
+else
+    echo -e "\033[31m================== $((total-success)) failed, ${success} passed ==================\033[0m"
+    return 1
+fi

@@ -18,15 +18,18 @@ fun main(args: Array<String>) {
     }
     if (exitCode != ExitCodes.SUCCESS) exitProcess(exitCode.code)
 
-    val user = authenticationService.user!! //если user null, программа завершится раньше
+    //если user null, программа завершится раньше
+    val user = authenticationService.user!!
 
     // if authentication passed create instance of AuthorizationService
     val authorizationService = AuthorizationService(permissions)
     exitCode = if (argHandler.isAuthorizationRequired()) {
         authorizationService.authorization(argHandler.res, argHandler.role, user.login)
     } else {
-        exitProcess(ExitCodes.SUCCESS.code) //0 так как аутентификация прошла успешно
+        //0 так как аутентификация прошла успешно
+        exitProcess(ExitCodes.SUCCESS.code)
     }
+
     if (exitCode != ExitCodes.SUCCESS) exitProcess(exitCode.code)
 
     val permission: Permission = authorizationService.permission!!
