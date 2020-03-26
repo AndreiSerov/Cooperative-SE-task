@@ -49,8 +49,8 @@ test "T4.5" "-login vasya -pass 123 -res A -role READ -ds 2020-03-11 -de 2020-03
 if [ $success -eq $total ]
     then
     echo -e "\033[32m================== ${total} passed ==================\033[0m"
-    return 0
+    exit 0
 else
     echo -e "\033[31m================== $((total-success)) failed, ${success} passed ==================\033[0m"
-    return 1
+    exit 1
 fi
