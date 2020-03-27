@@ -1,0 +1,9 @@
+language: java
+compiler: kotlinc
+before-install:
+  - sudo snap install --classic kotlin
+jobs:
+  include:
+    - stage: build
+      script: ./build.sh;
+              ./test.sh
