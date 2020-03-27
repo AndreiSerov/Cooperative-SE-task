@@ -3,5 +3,5 @@ compiler: kotlinc
 before-install:
   - sudo snap install --classic kotlin
 
-before_script: ./build.sh
-script: ./test.sh
+script: ./build.sh
+after_success: ./test.sh
