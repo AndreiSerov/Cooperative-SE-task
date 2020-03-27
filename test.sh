@@ -44,7 +44,7 @@ test "T4.1" "-login vasya -pass 123 -res A -role READ -ds 2020-03-10 -de 2020-03
 test "T4.2" "-login vasya -pass 123 -res A -role READ -ds 2020.03.10 -de 2020.03.11 -vol 100"  7
 test "T4.3" "-login vasya -pass 123 -res A -role READ -ds 2020-03-10 -de 2020-03-11 -vol aaaa"  7
 test "T4.4" "-login vasya -pass 123 -res A -role EXECUTE -ds 01.02.3012 -de 01.02.2030 -vol aaa"  6
-test "T4.5" "-login vasya -pass -res A -role READ -ds 2020-03-11 -de 2020-03-10 -vol 100"  7
+test "T4.5" "-login vasya -pass 123 -res A -role READ -ds 2020-03-11 -de 2020-03-10 -vol 100"  7
 
 if [ $success -eq $total ]
     then
