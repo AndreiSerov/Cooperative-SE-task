@@ -1,7 +1,6 @@
 language: java
 compiler: kotlinc
-before-install:
-  - sudo snap install --classic kotlin
+install: sudo snap install --classic kotlin
 
 script: ./build.sh
 after_success: ./test.sh
