@@ -1,3 +1,6 @@
+
+![Build Status](https://travis-ci.com/AndreiSerov/Cooperative-SE-task.svg?branch=master)
+
 1) Cоздаём проект и прикручиваем его к удалённому репозиторию на GitHub  
 2) Создаём класс Handler  
     2.1) Cоздаём метод handler внутри класса Handler для обработки аргументов командной строки  
