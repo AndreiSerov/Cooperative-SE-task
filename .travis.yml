@@ -2,5 +2,4 @@ language: java
 compiler: kotlinc
 install: sudo snap install --classic kotlin
 
-script: ./compile.sh
-after_success: ./test.sh
+script: ./compile.sh && ./test.sh
