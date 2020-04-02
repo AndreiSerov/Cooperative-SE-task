@@ -1,6 +1,6 @@
 # [Cooperative-SE-task](https://andreiserov.github.io/Cooperative-SE-task/)
 
-![Build Status](https://travis-ci.com/AndreiSerov/Cooperative-SE-task.svg?branch=master)
+[![Build Status](https://travis-ci.com/AndreiSerov/Cooperative-SE-task.svg?branch=master)](https://travis-ci.com/github/AndreiSerov/Cooperative-SE-task)
 
 ## Roadmaps
 - [Roadmap1](ROADMAP1.md)
