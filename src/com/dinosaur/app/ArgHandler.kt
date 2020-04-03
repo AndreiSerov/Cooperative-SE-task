@@ -3,7 +3,7 @@ package com.dinosaur.app
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
-
+import org.apache.logging.log4j.kotlin.Logging
 class ArgHandler(args: Array<String>) {
 
     private val parser = ArgParser(
