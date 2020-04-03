@@ -5,6 +5,7 @@
 ## Roadmaps
 - [Roadmap1](ROADMAP1.md)
 - [Roadmap2](ROADMAP2.md)
+- [Roadmap3](ROADMAP3.md)
 
 ## Сборка
 Для сборки программы установите компилятор Kotlinc и запустите `compile.sh`.
