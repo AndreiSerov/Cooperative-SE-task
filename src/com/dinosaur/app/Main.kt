@@ -63,6 +63,6 @@ fun main(args: Array<String>) {
         sessions.add(accountingService.session!!)
         exitProcess(exitCode.code)
     } catch (e: Exception) {
-        log.error(e)
+//        log.error(e)
     }
 }
