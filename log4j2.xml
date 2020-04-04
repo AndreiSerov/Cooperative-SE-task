@@ -3,18 +3,22 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout>
-                <Pattern>%d %5p %c{1} %X %F:%L - %m%n</Pattern>
+                <Pattern>
+                    %d"\n"%5p %c{1}"\n"%F:%L"\n"%m%n
+                </Pattern>
             </PatternLayout>
         </Console>
         <File name="File" fileName="aaa.log">
             <PatternLayout>
-                <Pattern>%d %5p %c{1} %X %F:%L - %m%n</Pattern>
+                <Pattern>
+                    %d"\n"%5p %c{1}"\n"%F:%L"\n"%m%n
+                </Pattern>
             </PatternLayout>
         </File>
     </Appenders>
     <Loggers>
         <Root level="TRACE">
-            <AppenderRef ref="Console" level="INFO"/>
+            <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
         </Root>
     </Loggers>
