@@ -11,6 +11,9 @@ fun main(args: Array<String>) {
 
     val log = logger("App")
     log.info("Program starts!")
+    log.warn("WARNING")
+    log.error("ERROR")
+    log.trace("TRACE")
 
     try {
         val argHandler = ArgHandler(args)
