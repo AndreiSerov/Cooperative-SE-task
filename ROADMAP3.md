@@ -5,7 +5,7 @@
 2. Провести исследование
     1. Провести исследование библиотеки [log4j](https://logging.apache.org/log4j/kotlin/)(**R3.1**) - 30 мин  
     2. Провести исследование[h2db](http://www.h2database.com/html/main.html ) (**R3.3**) - 30 мин  
-    3. Провести исследование библиотеки для исключения SQLI 
+    3. Провести исследование библиотеки для исключения  SQLI 
     [PreparedStatement](http://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html)(**R3.7**) - 30 мин
     4. Проовести исследование принципов [SOLID](https://clean-code.org/how-to-write-code-solidno.html)(**R3.10**) - 2 часа
     5. Провести исследование и узнать что такое [переменные среды](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)(**R3.11**) - 30 мин  
