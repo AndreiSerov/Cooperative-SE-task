@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<Configuration name="ConsoleApplication" status="WARN">
+<Configuration name="App" status="WARN">
     <Appenders>
-        <Console name="Console">
+        <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout>
                 <Pattern>%d %5p %c{1} %X %F:%L - %m%n</Pattern>
             </PatternLayout>
@@ -15,7 +14,7 @@
     </Appenders>
     <Loggers>
         <Root level="TRACE">
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Console" level="INFO"/>
             <AppenderRef ref="File"/>
         </Root>
     </Loggers>
