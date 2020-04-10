@@ -4,6 +4,8 @@ import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
 import org.apache.logging.log4j.kotlin.Logging
+
+
 class ArgHandler(args: Array<String>) {
 
     private val parser = ArgParser(
@@ -44,7 +46,6 @@ class ArgHandler(args: Array<String>) {
             parser.parse(args)
         } catch (e: IllegalStateException) {
             println(e.message)
-            // exitProcess(0) //пройдут тесты в первоначальном варианте
         }
     }
 
