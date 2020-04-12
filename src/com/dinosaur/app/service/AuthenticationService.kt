@@ -1,10 +1,11 @@
 package com.dinosaur.app.service
 
+import com.dinosaur.app.dao.DAOAuthentication
 import com.dinosaur.app.ExitCodes
 import com.dinosaur.app.domain.User
 import java.security.MessageDigest
 
-class AuthenticationService(private val users: List<User>) {
+class AuthenticationService(private val daoAuthentication: DAOAuthentication) {
 
     var user: User? = null
 
@@ -13,7 +14,7 @@ class AuthenticationService(private val users: List<User>) {
             return ExitCodes.INVALID_LOGIN
         }
         // check that user exists in db
-        user = findUser(login, users) ?: return ExitCodes.USER_NOT_FOUND
+        var userData = daoAuthentication.getUserData(login)
 
         if (!checkPassword(pass, user!!)) {
             return ExitCodes.WRONG_PASSWORD

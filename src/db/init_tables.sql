@@ -1,7 +1,7 @@
 CREATE TABLE users(
     id INT PRIMARY KEY AUTO_INCREMENT,
     login VARCHAR(10),
-    hash VARCHAR(64),
+    hash VARCHAR(128),
     salt VARCHAR(5)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE permissions(
 
 CREATE TABLE sessions(
     id INT AUTO_INCREMENT,
-    user_id VARCHAR(10) REFERENCES users(id),
+    user_id VARCHAR(10),
     permission_id INT,
     ds VARCHAR(10),
     de VARCHAR(10),

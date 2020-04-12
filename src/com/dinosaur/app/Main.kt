@@ -1,5 +1,6 @@
 package com.dinosaur.app
 
+import com.dinosaur.app.dao.DAOAuthentication
 import com.dinosaur.app.domain.Permission
 import com.dinosaur.app.service.AccountingService
 import com.dinosaur.app.service.AuthenticationService
@@ -13,17 +14,22 @@ fun main(args: Array<String>) {
     val log = logger("App")
     log.info("Program starts!")
 
-    val connection: DBService = DBService(log)
+    val dbService = DBService(log)
 
     try {
         try { // we should exit DB session in any case
-            connection.getConnection()
+            dbService.getConnection()
+            val connection = dbService.connection
+            val daoAuthentication = DAOAuthentication(connection!!) // not null
             val argHandler = ArgHandler(args)
-            val authenticationService = AuthenticationService(users)
+            val authenticationService = AuthenticationService(daoAuthentication)
 
             // Authentication
             var exitCode: ExitCodes = if (argHandler.isAuthenticationRequired()) {
-                authenticationService.authentication(argHandler.login!!, argHandler.pass!!)
+                authenticationService.authentication(
+                        argHandler.login!!,
+                        argHandler.pass!!
+                )
             } else {
                 log.info("Printing help")
                 ExitCodes.HELP
@@ -98,7 +104,7 @@ fun main(args: Array<String>) {
             log.info("Accouting data stored")
             exitProcess(exitCode.code)
         } finally {
-            connection.close()
+            dbService.close()
         }
     } catch (e: Exception) {
         log.error(e)
