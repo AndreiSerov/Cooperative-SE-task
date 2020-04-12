@@ -4,18 +4,22 @@ import com.dinosaur.app.domain.User
 import java.sql.Connection
 
 class DAOAuthentication(private val connection: Connection) {
-    fun getUserData(login: String): User {
-        val prepareStatement = connection.prepareStatement(
+    fun getUserData(login: String): User? {
+        val statement = connection.prepareStatement(
                 "SELECT login, hash, salt FROM USERS WHERE login=?"
         )
-        prepareStatement.setString(1, login)
-        val userSet = prepareStatement.executeQuery()
-        userSet.next()
-
-        return User(
-                userSet.getString("login"),
-                userSet.getString("hash"),
-                userSet.getString("salt")
-        )
+        // close when block ends TODO
+        statement.setString(1, login)
+        val userSet = statement.executeQuery()
+        // check that user in db
+        if (userSet.next()) {
+            return User(
+                    userSet.getString("login"),
+                    userSet.getString("hash"),
+                    userSet.getString("salt")
+            )
+        }
+        // if user not in db return null
+        return null
     }
 }
