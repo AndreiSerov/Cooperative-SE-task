@@ -1,6 +1,7 @@
 package com.dinosaur.app
 
 import com.dinosaur.app.dao.DAOAuthentication
+import com.dinosaur.app.dao.DAOAuthorization
 import com.dinosaur.app.domain.Permission
 import com.dinosaur.app.service.AccountingService
 import com.dinosaur.app.service.AuthenticationService
@@ -67,10 +68,11 @@ fun run(argHandler: ArgHandler,
 
     // Authorization
     // if authentication passed create instance of AuthorizationService
-    val authorizationService = AuthorizationService(permissions)
+    val daoAuthorization = DAOAuthorization(connection!!) // not null
+    val authorizationService = AuthorizationService(daoAuthorization)
     exitCode = if (argHandler.isAuthorizationRequired()) {
         authorizationService.authorization(
-                argHandler.res, argHandler.role, user.login
+                user.login, argHandler.res, argHandler.role
         )
     } else {
         // 0 так как аутентификация прошла успешно

@@ -2,25 +2,27 @@ package com.dinosaur.app.service
 
 import com.dinosaur.app.ExitCodes
 import com.dinosaur.app.Role
+import com.dinosaur.app.dao.DAOAuthorization
 import com.dinosaur.app.domain.Permission
 
-class AuthorizationService(private val permissions: List<Permission>) {
+class AuthorizationService(
+        private val daoAuthorization: DAOAuthorization) {
 
     var permission: Permission? = null
 
     fun authorization(
+            login: String,
             resPath: String,
-            role: String,
-            username: String
+            role: String
     ): ExitCodes {
         if (!Role.isRoleExists(role)) return ExitCodes.INVALID_ROLE
 
+        val permissions = daoAuthorization
+                .confirmPermission(login, resPath, role)
+                ?: return ExitCodes.ACCESS_DENIED
 
         for (perm in permissions) {
-            if (username != perm.username || role != perm.role) {
-                continue
-            }
-            if (isChild(resPath, perm.resPath)) {
+            if (resPath.isChild(perm.resPath)) {
                 permission = perm
                 return ExitCodes.SUCCESS
             }
@@ -28,10 +30,10 @@ class AuthorizationService(private val permissions: List<Permission>) {
         return ExitCodes.ACCESS_DENIED
     }
 
-    private fun isChild(pathFromQuery: String, pathFromDB: String): Boolean {
+    private fun String.isChild(pathFromDB: String): Boolean {
 
         //делим по точке желаемый ресурс и ресурс из коллекции
-        val query: Array<String> = pathFromQuery.split(".").toTypedArray()
+        val query: Array<String> = split(".").toTypedArray()
         val resFromDB: Array<String> = pathFromDB.split(".").toTypedArray()
 
         //если запрос короче чем ресурс из бд, то это не потомок

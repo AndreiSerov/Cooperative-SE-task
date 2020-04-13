@@ -15,6 +15,11 @@ CREATE TABLE permissions(
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE SHOPS(
+    addres varchar(13),
+    name varchar(13),
+    primary key (addres, name)
+)
 CREATE TABLE sessions(
     id INT AUTO_INCREMENT,
     user_id VARCHAR(10),
