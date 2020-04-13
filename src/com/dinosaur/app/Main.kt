@@ -17,27 +17,37 @@ fun main(args: Array<String>) {
     log.info("Program starts!")
 
     val dbService = DBService(log)
-    var exitCode = 0
+    var exitCode: Int = 1
 
     try {
-        // use instead of try/finally
+        // 'use' instead of try/finally
+        val argHandler = ArgHandler(args)
+        // if run with any wrong arg. Program wouldnt come below
+        exitCode = argHandler.checkArgs()
+        // finish program
+        when (exitCode) {
+            2, 5 -> {
+                return
+            }
+        }
+        // we shouldn't connect to DB if not auth required TODO
+        // 'use' instead of try/finally
         dbService.use {
-            it.getConnection()
-            exitCode = run(args, dbService.connection, log)
+            it.getConnection() // we shouldn't connect to DB if not auth required TODO
+            exitCode = run(argHandler, dbService.connection, log)
         }
     } catch (e: Exception) {
         log.error(e)
+    } finally {
+        exitProcess(exitCode)
     }
-
-    exitProcess(exitCode)
 }
 
-fun run(args: Array<String>,
+fun run(argHandler: ArgHandler,
         connection: Connection?,
         log: KotlinLogger): Int {
     // we should exit DB session in any case
     val daoAuthentication = DAOAuthentication(connection!!) // not null
-    val argHandler = ArgHandler(args)
     val authenticationService = AuthenticationService(daoAuthentication)
 
     // Authentication

@@ -3,7 +3,6 @@ package com.dinosaur.app
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
-import org.apache.logging.log4j.kotlin.Logging
 
 
 class ArgHandler(args: Array<String>) {
@@ -49,6 +48,18 @@ class ArgHandler(args: Array<String>) {
         }
     }
 
+    fun checkArgs(): Int {
+        val exitCode = when {
+            // return code 2
+            !isLoginValid(login!!) -> ExitCodes.INVALID_LOGIN
+            // return code 5 if role not exists
+            !Role.isRoleExists(role) && role.isNotBlank() ->
+                ExitCodes.INVALID_ROLE
+            else -> ExitCodes.HELP
+        }
+        return exitCode.code
+    }
+
     fun isAuthenticationRequired(): Boolean =
             !login.isNullOrEmpty() && !pass.isNullOrEmpty()
 
@@ -57,4 +68,7 @@ class ArgHandler(args: Array<String>) {
 
     fun isAccountingRequired(): Boolean =
             ds.isNotEmpty() && de.isNotEmpty() && vol.isNotEmpty()
+
+    fun isLoginValid(login: String): Boolean
+            = "^[a-z]{1,10}$".toRegex().matches(login)
 }

@@ -10,9 +10,6 @@ class AuthenticationService(private val daoAuthentication: DAOAuthentication) {
     var user: User? = null
 
     fun authentication(login: String, pass: String): ExitCodes {
-        if (!isLoginValid(login)) {
-            return ExitCodes.INVALID_LOGIN
-        }
         // check that user exists in db
         user = daoAuthentication.getUserData(login)
                 ?: return ExitCodes.USER_NOT_FOUND
@@ -22,9 +19,6 @@ class AuthenticationService(private val daoAuthentication: DAOAuthentication) {
         }
         return ExitCodes.SUCCESS
     }
-
-    private fun isLoginValid(login: String): Boolean
-            = "^[a-z]{1,10}$".toRegex().matches(login)
 
     private fun checkPassword(pass: String, user: User)
             = pass.getHash(user.salt) == user.hash

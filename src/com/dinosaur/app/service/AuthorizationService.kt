@@ -14,9 +14,6 @@ class AuthorizationService(private val permissions: List<Permission>) {
             username: String
     ): ExitCodes {
 
-        //возвращаем код 5, если роль не существует
-        if (!Role.isRoleExists(role)) return ExitCodes.INVALID_ROLE
-
         for (perm in permissions) {
             if (username != perm.username || role != perm.role) {
                 continue
