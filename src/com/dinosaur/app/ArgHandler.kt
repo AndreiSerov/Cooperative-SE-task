@@ -48,13 +48,10 @@ class ArgHandler(args: Array<String>) {
         }
     }
 
-    fun checkArgs(): Int {
+    fun checkLogin(): Int {
         val exitCode = when {
             // return code 2
             !isLoginValid(login!!) -> ExitCodes.INVALID_LOGIN
-            // return code 5 if role not exists
-            !Role.isRoleExists(role) && role.isNotBlank() ->
-                ExitCodes.INVALID_ROLE
             else -> ExitCodes.HELP
         }
         return exitCode.code

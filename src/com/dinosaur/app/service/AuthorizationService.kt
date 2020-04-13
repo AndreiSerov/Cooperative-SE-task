@@ -13,6 +13,8 @@ class AuthorizationService(private val permissions: List<Permission>) {
             role: String,
             username: String
     ): ExitCodes {
+        if (!Role.isRoleExists(role)) return ExitCodes.INVALID_ROLE
+
 
         for (perm in permissions) {
             if (username != perm.username || role != perm.role) {
