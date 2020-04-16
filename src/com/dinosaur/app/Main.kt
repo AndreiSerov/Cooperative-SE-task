@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
     log.info("Program starts!")
 
     val dbService = DBService(log)
-    var exitCode: Int = 1
+    var exitCode = 1
 
     try {
         // 'use' instead of try/finally
@@ -30,7 +30,7 @@ fun main(args: Array<String>) {
         // 'use' instead of try/finally
         dbService.use {
             it.getConnection() // we shouldn't connect to DB if not auth required TODO
-            exitCode = run(argHandler, dbService.connection, log)
+            exitCode = run(argHandler, it.connection!!, log)
         }
     } catch (e: Exception) {
         log.error(e)
@@ -40,10 +40,10 @@ fun main(args: Array<String>) {
 }
 
 fun run(argHandler: ArgHandler,
-        connection: Connection?,
+        connection: Connection,
         log: KotlinLogger): Int {
     // we should exit DB session in any case
-    val daoAuthentication = DAOAuthentication(connection!!) // not null
+    val daoAuthentication = DAOAuthentication(connection) // not null
     val authenticationService = AuthenticationService(daoAuthentication)
 
     // Authentication
@@ -69,7 +69,7 @@ fun run(argHandler: ArgHandler,
 
     // Authorization
     // if authentication passed create instance of AuthorizationService
-    val daoAuthorization = DAOAuthorization(connection!!) // not null
+    val daoAuthorization = DAOAuthorization(connection) // not null
     val authorizationService = AuthorizationService(daoAuthorization)
     exitCode = if (argHandler.isAuthorizationRequired()) {
         authorizationService.authorization(
@@ -96,7 +96,7 @@ fun run(argHandler: ArgHandler,
 
     // Accounting
     // if authorization passed create instance of AccountingService
-    val daoAccounting = DAOAccounting(connection!!)
+    val daoAccounting = DAOAccounting(connection)
     val accountingService = AccountingService(daoAccounting)
     exitCode = if (argHandler.isAccountingRequired()) {
         accountingService.accounting(

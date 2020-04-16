@@ -18,7 +18,7 @@ class AuthorizationService(
         if (!Role.isRoleExists(role)) return ExitCodes.INVALID_ROLE
 
         val permissions = daoAuthorization
-                .confirmPermission(login, resPath, role)
+                .confirmPermission(login, role)
                 ?: return ExitCodes.ACCESS_DENIED
 
         for (perm in permissions) {

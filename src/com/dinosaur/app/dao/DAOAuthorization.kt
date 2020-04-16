@@ -5,7 +5,6 @@ import java.sql.Connection
 
 class DAOAuthorization(private val connection: Connection) {
     fun confirmPermission(login: String,
-                          resPath: String,
                           role: String): MutableList<Permission>? {
         val permissions: MutableList<Permission> = mutableListOf()
 
