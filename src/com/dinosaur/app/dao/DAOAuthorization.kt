@@ -10,9 +10,9 @@ class DAOAuthorization(private val connection: Connection) {
         val permissions: MutableList<Permission> = mutableListOf()
 
         val query = """
-            select LOGIN, RES, ROLE from PERMISSIONS
+            select PERMISSIONS.ID, LOGIN, RES, ROLE from PERMISSIONS
                 JOIN USERS ON PERMISSIONS.USER_ID=USERS.ID
-                where LOGIN=? AND ROLE=?
+                where LOGIN=? AND ROLE=?;
         """.trimIndent()
 
         val statement = connection.prepareStatement(query)
@@ -22,7 +22,8 @@ class DAOAuthorization(private val connection: Connection) {
         val permissionSet = statement.executeQuery()
 
         while (permissionSet.next()) {
-            var permission = Permission(
+            val permission = Permission(
+                    permissionSet.getInt("id"),
                     permissionSet.getString("login"),
                     permissionSet.getString("res"),
                     permissionSet.getString("role")

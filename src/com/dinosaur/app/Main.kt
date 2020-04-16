@@ -1,5 +1,6 @@
 package com.dinosaur.app
 
+import com.dinosaur.app.dao.DAOAccounting
 import com.dinosaur.app.dao.DAOAuthentication
 import com.dinosaur.app.dao.DAOAuthorization
 import com.dinosaur.app.domain.Permission
@@ -90,14 +91,17 @@ fun run(argHandler: ArgHandler,
         return exitCode.code
     }
 
+    // if permission is null program wouldn't reach code below
     val permission: Permission = authorizationService.permission!!
 
     // Accounting
     // if authorization passed create instance of AccountingService
-    val accountingService = AccountingService(sessions)
+    val daoAccounting = DAOAccounting(connection!!)
+    val accountingService = AccountingService(daoAccounting)
     exitCode = if (argHandler.isAccountingRequired()) {
         accountingService.accounting(
-                permission,
+                user.id,
+                permission.id,
                 argHandler.ds,
                 argHandler.de,
                 argHandler.vol
@@ -122,7 +126,6 @@ fun run(argHandler: ArgHandler,
         return exitCode.code
     }
 
-    sessions.add(accountingService.session!!)
-    log.info("Accouting data stored")
+    log.info("Accounting data stored")
     return exitCode.code
 }

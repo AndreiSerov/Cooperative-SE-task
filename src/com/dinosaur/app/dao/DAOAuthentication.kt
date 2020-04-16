@@ -6,7 +6,7 @@ import java.sql.Connection
 class DAOAuthentication(private val connection: Connection) {
     fun getUserData(login: String): User? {
         val statement = connection.prepareStatement(
-                "SELECT login, hash, salt FROM USERS WHERE login=?"
+                "SELECT * FROM USERS WHERE login=?"
         )
         // close when block ends TODO
         statement.setString(1, login)
@@ -14,6 +14,7 @@ class DAOAuthentication(private val connection: Connection) {
         // check that user in db
         if (userSet.next()) {
             return User(
+                    userSet.getInt("id"),
                     userSet.getString("login"),
                     userSet.getString("hash"),
                     userSet.getString("salt")
