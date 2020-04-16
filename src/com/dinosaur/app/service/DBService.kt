@@ -1,7 +1,9 @@
 package com.dinosaur.app.service
 
 import org.apache.logging.log4j.kotlin.KotlinLogger
+import org.flywaydb.core.Flyway
 import java.io.Closeable
+import java.io.File
 import java.sql.Connection
 import java.sql.DriverManager
 
@@ -13,8 +15,21 @@ class DBService(private val log: KotlinLogger) : Closeable {
     var connection: Connection? = null
 
     fun getConnection() {
+        // check that DB exists if not init it
+        if (!File("./db", "defaull.h2.db").exists()) {
+            migrate()
+        }
+
         log.info("Connect to Data Base")
         connection = DriverManager.getConnection(url, user, pass)
+    }
+
+    fun migrate() {
+        Flyway.configure()
+                .dataSource(url, user, pass)
+                .locations("filesystem:./src/db")
+                .load()
+                .migrate()
     }
 
     override fun close() {

@@ -8,6 +8,7 @@ else
   params+="./lib/log4j-api-2.13.1.jar:"
   params+="./lib/log4j-api-kotlin-1.0.0.jar:"
   params+="./lib/h2-1.4.200.jar:"
+  params+="./lib/flyway-core-6.3.3.jar:"
   params+="bin/app.jar"
 fi
 
