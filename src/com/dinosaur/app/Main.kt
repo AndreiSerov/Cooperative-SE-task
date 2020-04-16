@@ -24,9 +24,6 @@ fun main(args: Array<String>) {
     try {
         // 'use' instead of try/finally
         val argHandler = ArgHandler(args)
-        // if run with any wrong arg. Program wouldnt come below
-        exitCode = argHandler.checkLogin()
-        if (exitCode == 2) return
         // 'use' instead of try/finally
         dbService.use {
             it.getConnection() // we shouldn't connect to DB if not auth required TODO
@@ -42,6 +39,10 @@ fun main(args: Array<String>) {
 fun run(argHandler: ArgHandler,
         connection: Connection,
         log: KotlinLogger): Int {
+    // if run with any wrong arg. Program wouldn't come below
+    if (!argHandler.isLoginValid(argHandler.login!!)) {
+        return ExitCodes.INVALID_LOGIN.code
+    }
     // we should exit DB session in any case
     val daoAuthentication = DAOAuthentication(connection) // not null
     val authenticationService = AuthenticationService(daoAuthentication)

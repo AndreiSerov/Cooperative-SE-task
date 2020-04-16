@@ -66,6 +66,6 @@ class ArgHandler(args: Array<String>) {
     fun isAccountingRequired(): Boolean =
             ds.isNotEmpty() && de.isNotEmpty() && vol.isNotEmpty()
 
-    private fun isLoginValid(login: String): Boolean
+    fun isLoginValid(login: String): Boolean
             = "^[a-z]{1,10}$".toRegex().matches(login)
 }

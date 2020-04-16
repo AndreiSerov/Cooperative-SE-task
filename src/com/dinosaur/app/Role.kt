@@ -6,6 +6,7 @@ enum class Role {
     EXECUTE;
 
     companion object {
-        fun isRoleExists(role: String): Boolean = values().map { it.name }.contains(role)
+        fun isRoleExists(role: String): Boolean =
+                values().map { it.name }.contains(role)
     }
 }
