@@ -15,23 +15,27 @@ class DAOAuthorization(private val connection: Connection) {
         """.trimIndent()
 
         val statement = connection.prepareStatement(query)
-        statement.setString(1, login)
-        statement.setString(2, role)
+        statement.use {
 
-        val permissionSet = statement.executeQuery()
+            it.setString(1, login)
+            it.setString(2, role)
 
-        while (permissionSet.next()) {
-            val permission = Permission(
-                    permissionSet.getInt("id"),
-                    permissionSet.getString("login"),
-                    permissionSet.getString("res"),
-                    permissionSet.getString("role")
-            )
-            permissions.add(permission)
+            val permissionSet = it.executeQuery()
+
+            while (permissionSet.next()) {
+                val permission = Permission(
+                        permissionSet.getInt("id"),
+                        permissionSet.getString("login"),
+                        permissionSet.getString("res"),
+                        permissionSet.getString("role")
+                )
+                permissions.add(permission)
+            }
+
+            if (permissions.isEmpty()) use@return null
+
+
+            use@return permissions
         }
-
-        if(permissions.isEmpty()) return null
-
-        return permissions
     }
 }

@@ -7,7 +7,7 @@ import java.io.File
 import java.sql.Connection
 import java.sql.DriverManager
 
-class DBService(private val log: KotlinLogger) : Closeable {
+class DBService(private val log: KotlinLogger) : AutoCloseable {
     private val url: String = System.getenv("H2URL") ?: "jdbc:h2:./default"
     private val user: String = System.getenv("H2LOGIN") ?: "sa"
     private val pass: String = System.getenv("H2PASS") ?: ""
@@ -15,10 +15,7 @@ class DBService(private val log: KotlinLogger) : Closeable {
     var connection: Connection? = null
 
     fun getConnection() {
-        // check that DB exists if not init it
-        if (!File("./db", "defaull.h2.db").exists()) {
-            migrate()
-        }
+        migrate()
 
         log.info("Connect to Data Base")
         connection = DriverManager.getConnection(url, user, pass)

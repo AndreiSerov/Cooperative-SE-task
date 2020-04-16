@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
         val argHandler = ArgHandler(args)
         // if run with any wrong arg. Program wouldnt come below
         exitCode = argHandler.checkLogin()
-        if (exitCode != 1) return
+        if (exitCode == 2) return
         // 'use' instead of try/finally
         dbService.use {
             it.getConnection() // we shouldn't connect to DB if not auth required TODO
