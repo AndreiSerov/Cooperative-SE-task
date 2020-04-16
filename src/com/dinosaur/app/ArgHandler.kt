@@ -48,15 +48,6 @@ class ArgHandler(args: Array<String>) {
         }
     }
 
-    fun checkLogin(): Int {
-        val exitCode = when {
-            // return code 2
-            !isLoginValid(login!!) -> ExitCodes.INVALID_LOGIN
-            else -> ExitCodes.HELP
-        }
-        return exitCode.code
-    }
-
     fun isAuthenticationRequired(): Boolean =
             !login.isNullOrEmpty() && !pass.isNullOrEmpty()
 
