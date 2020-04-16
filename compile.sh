@@ -7,11 +7,12 @@ lib+="./lib/kotlinx-cli-0.2.1.jar:"
 lib+="./lib/log4j-api-2.13.1.jar:"
 lib+="./lib/log4j-api-kotlin-1.0.0.jar:"
 lib+="./lib/h2-1.4.200.jar:"
-lib+="./lib/flyway-core-6.3.3.jar"
+lib+="./lib/flyway-core-6.3.3.jar:"
+lib+="./lib/kotlin-stdlib-jdk7.jar"
 
 
 
-kotlinc -jvm-target 11\
+kotlinc \
   -cp ${lib}\
   ./src -include-runtime -d bin/app.jar
 
