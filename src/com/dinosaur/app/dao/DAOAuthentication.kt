@@ -15,7 +15,7 @@ class DAOAuthentication(private val connection: Connection) {
 
             // check that user in db
             if (userSet.next()) {
-                use@return User(
+                return@getUserData User(
                         userSet.getInt("id"),
                         userSet.getString("login"),
                         userSet.getString("hash"),

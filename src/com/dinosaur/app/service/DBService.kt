@@ -2,8 +2,6 @@ package com.dinosaur.app.service
 
 import org.apache.logging.log4j.kotlin.KotlinLogger
 import org.flywaydb.core.Flyway
-import java.io.Closeable
-import java.io.File
 import java.sql.Connection
 import java.sql.DriverManager
 
@@ -21,7 +19,7 @@ class DBService(private val log: KotlinLogger) : AutoCloseable {
         connection = DriverManager.getConnection(url, user, pass)
     }
 
-    fun migrate() {
+    private fun migrate() {
         Flyway.configure()
                 .dataSource(url, user, pass)
                 .locations("filesystem:./src/db")

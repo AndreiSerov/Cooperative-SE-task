@@ -32,10 +32,10 @@ class DAOAuthorization(private val connection: Connection) {
                 permissions.add(permission)
             }
 
-            if (permissions.isEmpty()) use@return null
+            if (permissions.isEmpty()) return null
 
 
-            use@return permissions
+            return@confirmPermission permissions
         }
     }
 }

@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException
 
 class AccountingService(private val daoAccounting: DAOAccounting) {
 
-    var session: Session? = null
+    private var session: Session? = null
 
     fun accounting(user_id: Int,
                    permission_id: Int,
