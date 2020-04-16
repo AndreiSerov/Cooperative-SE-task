@@ -11,7 +11,7 @@ lib+="./lib/flyway-core-6.3.3.jar"
 
 
 
-kotlinc\
+kotlinc -jvm-target 11\
   -cp ${lib}\
   ./src -include-runtime -d bin/app.jar
 

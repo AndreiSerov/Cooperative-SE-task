@@ -2,7 +2,8 @@ CREATE TABLE users(
     id INT PRIMARY KEY AUTO_INCREMENT,
     login VARCHAR(10),
     hash VARCHAR(128),
-    salt VARCHAR(5)
+    salt VARCHAR(5),
+    UNIQUE (login)
 );
 
 CREATE TABLE permissions(
