@@ -8,7 +8,7 @@ class DAOAuthentication(private val connection: Connection) {
         val statement = connection.prepareStatement(
                 "SELECT * FROM USERS WHERE login=?"
         )
-        // close when block ends TODO
+
         statement.use {
             it.setString(1, login)
             val userSet = it.executeQuery()
