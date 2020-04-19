@@ -22,7 +22,9 @@ class DBService(private val log: KotlinLogger) : AutoCloseable {
     private fun migrate() {
         Flyway.configure()
                 .dataSource(url, user, pass)
-                .locations("filesystem:./src/db")
+                .locations(
+                        "filesystem:./src/main/resources/db"
+                )
                 .load()
                 .migrate()
     }
