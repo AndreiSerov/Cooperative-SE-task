@@ -31,10 +31,10 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api:2.13.1")
     implementation("org.apache.logging.log4j:log4j-core:2.13.1")
     // test
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:latest.release")
-    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:latest.release")
-    testImplementation(kotlin("kotlin-test"))
-    testImplementation(kotlin("kotlin-test-junit"))
+//    testImplementation("org.spekframework.spek2:spek-dsl-jvm:latest.release")
+//    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:latest.release")
+//    testImplementation(kotlin("kotlin-test"))
+//    testImplementation(kotlin("kotlin-test-junit"))
 }
 
 val jar by tasks.getting(Jar::class) {

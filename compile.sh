@@ -14,6 +14,6 @@ lib+="./lib/kotlin-stdlib-jdk7.jar"
 
 kotlinc \
   -cp ${lib}\
-  ./src -include-runtime -d bin/app.jar
+  ./src/main/ -include-runtime -d bin/app.jar
 
-jar uf bin/app.jar ./log4j2.xml
+jar uf bin/app.jar ./src/main/resources/log4j2.xml
