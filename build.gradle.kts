@@ -15,10 +15,15 @@ repositories {
 plugins {
     kotlin("jvm") version "1.3.71"
     id("org.flywaydb.flyway") version "6.3.2"
+    id("org.jmailen.kotlinter") version "2.3.2" // ktlinter
+//    id("io.gitlab.arturbosch.detekt").version("1.7.4")
 
-    // app
-    application
 }
+
+kotlinter {
+    reporters = arrayOf("html")
+}
+
 
 dependencies {
     // main
@@ -31,24 +36,29 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api:2.13.1")
     implementation("org.apache.logging.log4j:log4j-core:2.13.1")
     // test
-//    testImplementation("org.spekframework.spek2:spek-dsl-jvm:latest.release")
-//    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:latest.release")
-//    testImplementation(kotlin("kotlin-test"))
-//    testImplementation(kotlin("kotlin-test-junit"))
+    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:latest.release")
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:latest.release")
+    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:latest.release")
+    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit"))
+
 }
 
-val jar by tasks.getting(Jar::class) {
-    manifest {
-        attributes["Main-Class"] = "com.dinosaur.app.MainKt"
+tasks {
+    build {
+        dependsOn(fatJar)
     }
 }
 
-apply {
-    application
-}
-
-application {
-    mainClassName = "com.dinosaur.app.MainKt"
-    applicationName = "AppKT"
+val fatJar = task("fatJar", type = Jar::class) {
+    manifest {
+        attributes["Main-Class"] = "com.dinosaur.app.MainKt"
+    }
+    from (configurations
+            .runtimeClasspath
+            .get()
+            .map { if (it.isDirectory) it else zipTree(it) }
+    )
+    with(tasks.jar.get() as CopySpec)
 }
 

@@ -4,8 +4,10 @@ import com.dinosaur.app.domain.Permission
 import java.sql.Connection
 
 class DAOAuthorization(private val connection: Connection) {
-    fun confirmPermission(login: String,
-                          role: String): MutableList<Permission>? {
+    fun confirmPermission(
+        login: String,
+        role: String
+    ): MutableList<Permission>? {
         val permissions: MutableList<Permission> = mutableListOf()
 
         val query = """
@@ -33,7 +35,6 @@ class DAOAuthorization(private val connection: Connection) {
             }
 
             if (permissions.isEmpty()) return null
-
 
             return@confirmPermission permissions
         }

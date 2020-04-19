@@ -7,7 +7,7 @@
     2. Spek
     3. JaCoCo
     4. ktlint
-    5. Static code report
+    5. Statteic code report
 
 3. Переструктурировать проект, чтобы соответствовал Grdle'у - (30 мин.) *2 ч.*
     1. Переструктурировать

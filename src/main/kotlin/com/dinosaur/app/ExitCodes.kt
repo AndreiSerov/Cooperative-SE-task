@@ -1,6 +1,6 @@
 package com.dinosaur.app
 
-enum class ExitCodes(val code: Int){
+enum class ExitCodes(val code: Int) {
     SUCCESS(0),
     HELP(1),
     INVALID_LOGIN(2),

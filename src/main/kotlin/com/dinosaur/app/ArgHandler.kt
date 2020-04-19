@@ -4,7 +4,6 @@ import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
 
-
 class ArgHandler(args: Array<String>) {
 
     private val parser = ArgParser(
@@ -38,7 +37,7 @@ class ArgHandler(args: Array<String>) {
 
     val vol: String by parser
             .option(ArgType.String, null, "vol", null, null)
-            .default("") //will convert to int in BusinessLogic
+            .default("") // will convert to int in BusinessLogic
 
     init {
         try {
@@ -57,6 +56,6 @@ class ArgHandler(args: Array<String>) {
     fun isAccountingRequired(): Boolean =
             ds.isNotEmpty() && de.isNotEmpty() && vol.isNotEmpty()
 
-    fun isLoginValid(login: String): Boolean
-            = "^[a-z]{1,10}$".toRegex().matches(login)
+    fun isLoginValid(login: String): Boolean =
+            "^[a-z]{1,10}$".toRegex().matches(login)
 }

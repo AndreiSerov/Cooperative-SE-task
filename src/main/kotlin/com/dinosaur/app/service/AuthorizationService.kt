@@ -6,14 +6,15 @@ import com.dinosaur.app.dao.DAOAuthorization
 import com.dinosaur.app.domain.Permission
 
 class AuthorizationService(
-        private val daoAuthorization: DAOAuthorization) {
+    private val daoAuthorization: DAOAuthorization
+) {
 
     var permission: Permission? = null
 
     fun authorization(
-            login: String,
-            resPath: String,
-            role: String
+        login: String,
+        resPath: String,
+        role: String
     ): ExitCodes {
         if (!Role.isRoleExists(role)) return ExitCodes.INVALID_ROLE
 
@@ -32,14 +33,14 @@ class AuthorizationService(
 
     private fun String.isChild(pathFromDB: String): Boolean {
 
-        //делим по точке желаемый ресурс и ресурс из коллекции
+        // делим по точке желаемый ресурс и ресурс из коллекции
         val query: Array<String> = split(".").toTypedArray()
         val resFromDB: Array<String> = pathFromDB.split(".").toTypedArray()
 
-        //если запрос короче чем ресурс из бд, то это не потомок
+        // если запрос короче чем ресурс из бд, то это не потомок
         if (query.size < resFromDB.size) {
             return false
-        //иначе проверяем совпадение узлов по порядку (от 0 до длины ресурса из бд)
+        // иначе проверяем совпадение узлов по порядку (от 0 до длины ресурса из бд)
         } else {
 
             for (i in resFromDB.indices) {

@@ -11,11 +11,13 @@ class AccountingService(private val daoAccounting: DAOAccounting) {
 
     private var session: Session? = null
 
-    fun accounting(user_id: Int,
-                   permission_id: Int,
-                   ds: String,
-                   de: String,
-                   vol: String): ExitCodes {
+    fun accounting(
+        user_id: Int,
+        permission_id: Int,
+        ds: String,
+        de: String,
+        vol: String
+    ): ExitCodes {
 
         val volInt = vol.toInteger() ?: return ExitCodes.INVALID_ACTIVITY
         val dateStart = ds.toDate() ?: return ExitCodes.INVALID_ACTIVITY
@@ -35,7 +37,7 @@ class AccountingService(private val daoAccounting: DAOAccounting) {
 
     private fun String.toDate(pattern: String = "yyyy-MM-dd"): LocalDate? = try {
         LocalDate.parse(this, DateTimeFormatter.ofPattern(pattern))
-    } catch (e: DateTimeParseException) { //если дата некорректная возвращаем null
+    } catch (e: DateTimeParseException) { // если дата некорректная возвращаем null
         null
     }
 

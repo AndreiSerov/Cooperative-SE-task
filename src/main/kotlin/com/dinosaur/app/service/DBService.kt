@@ -1,9 +1,9 @@
 package com.dinosaur.app.service
 
-import org.apache.logging.log4j.kotlin.KotlinLogger
-import org.flywaydb.core.Flyway
 import java.sql.Connection
 import java.sql.DriverManager
+import org.apache.logging.log4j.kotlin.KotlinLogger
+import org.flywaydb.core.Flyway
 
 class DBService(private val log: KotlinLogger) : AutoCloseable {
     private val url: String = System.getenv("H2URL") ?: "jdbc:h2:./default"
@@ -35,5 +35,4 @@ class DBService(private val log: KotlinLogger) : AutoCloseable {
             connection!!.close()
         }
     }
-
 }

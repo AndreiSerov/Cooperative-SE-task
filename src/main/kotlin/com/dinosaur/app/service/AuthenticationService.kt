@@ -1,7 +1,7 @@
 package com.dinosaur.app.service
 
-import com.dinosaur.app.dao.DAOAuthentication
 import com.dinosaur.app.ExitCodes
+import com.dinosaur.app.dao.DAOAuthentication
 import com.dinosaur.app.domain.User
 import java.security.MessageDigest
 
@@ -20,12 +20,13 @@ class AuthenticationService(private val daoAuthentication: DAOAuthentication) {
         return ExitCodes.SUCCESS
     }
 
-    private fun checkPassword(pass: String, user: User)
-            = pass.getHash(user.salt) == user.hash
+    private fun checkPassword(pass: String, user: User) =
+            pass.getHash(user.salt) == user.hash
 
-    //stackoverflow driven development
-    private fun String.getHash(salt: String,
-                               algorithm: String = "SHA-512"
+    // stackoverflow driven development
+    private fun String.getHash(
+        salt: String,
+        algorithm: String = "SHA-512"
     ): String {
         val bytes = (salt + this).toByteArray()
         val md = MessageDigest.getInstance(algorithm)
