@@ -51,6 +51,15 @@ tasks {
     build {
         dependsOn(fatJar)
     }
+
+    test {
+        useJUnitPlatform {
+            includeEngines("spek2")
+        }
+        testLogging {
+            events("passed", "failed")
+        }
+    }
 }
 
 val fatJar = task("fatJar", type = Jar::class) {

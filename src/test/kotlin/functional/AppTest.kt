@@ -1,61 +1,62 @@
-package functional
+package com.dinosaur.app
 
-import com.dinosaur.app.App
-import org.spekframework.spek2.Spek
 import kotlin.test.assertEquals
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 
-object AppTest: Spek ({
-    group("Help") {
+object AppTest : Spek({
+
+    describe("Help") {
         val args: List<Array<String>> = arrayOf(
                 "-h", "", "-q", "12345", "-res A.B 12345"
-        ).map{ it.split(" ").toTypedArray() }
+        ).map { it.split(" ").toTypedArray() }
 
-        println("Positive tests")
-        test("-h") {
-            assertEquals(0, App(args[0]).run())
-        }
+//        println("Positive tests")
+//        it("-h") {
+//            assertEquals(0, App().run(args[0]))
+//        }
 
         println("Negative tests")
-        test("Empty string") {
-            assertEquals(1, App(args[1]).run())
+        it("Empty string") {
+            assertEquals(1, App().run(args[1]))
         }
-        test("-q") {
-            assertEquals(1, App(args[2]).run())
+        it("-q") {
+            assertEquals(1, App().run(args[2]))
         }
-        test("12345") {
-            assertEquals(1, App(args[3]).run())
+        it("12345") {
+            assertEquals(1, App().run(args[3]))
         }
-        test("-res A.B 12345") {
-            assertEquals(1, App(args[4]).run())
+        it("-res A.B 12345") {
+            assertEquals(1, App().run(args[4]))
         }
     }
 
-    group("Authentication") {
+    describe("Authentication") {
         val args: List<Array<String>> = arrayOf(
                 "-login vasya -pass 123",
                 "-login VASYA -pass 123",
                 "-login asd -pass 123",
                 "-login admin -pass 123"
-        ).map{ it.split(" ").toTypedArray() }
+        ).map { it.split(" ").toTypedArray() }
 
         println("Positive tests")
-        test("-login vasya -pass 123") {
-            assertEquals(0, App(args[0]).run())
+        it("-login vasya -pass 123") {
+            assertEquals(0, App().run(args[0]))
         }
 
         println("Negative tests")
-        test("Invalid login: VASYA") {
-            assertEquals(2, App(args[1]).run())
+        it("Invalid login: VASYA") {
+            assertEquals(2, App().run(args[1]))
         }
-        test("Login not exists: asd") {
-            assertEquals(3, App(args[2]).run())
+        it("Login not exists: asd") {
+            assertEquals(3, App().run(args[2]))
         }
-        test("Wrong password") {
-            assertEquals(4, App(args[3]).run())
+        it("Wrong password") {
+            assertEquals(4, App().run(args[3]))
         }
     }
 
-    group("Authorization") {
+    describe("Authorization") {
         val args: List<Array<String>> = arrayOf(
                 "-login vasya -pass 123 -res A -role READ",
                 "-login vasya -pass 123 -res A.B -role READ",
@@ -64,36 +65,36 @@ object AppTest: Spek ({
                 "-login vasya -pass 0000 -res A.B -role DELETE",
                 "-login admin -pass admin -res A -role EXECUTE",
                 "-login admin -pass admin -res A.A -role WRITE"
-                
-        ).map{ it.split(" ").toTypedArray() }
+
+        ).map { it.split(" ").toTypedArray() }
 
         println("Positive tests")
-        test("-login vasya -pass 123 -res A -role READ") {
-            assertEquals(0, App(args[0]).run())
+        it("-login vasya -pass 123 -res A -role READ") {
+            assertEquals(0, App().run(args[0]))
         }
-        test("-login vasya -pass 123 -res A.B -role READ") {
-            assertEquals(0, App(args[1]).run())
+        it("-login vasya -pass 123 -res A.B -role READ") {
+            assertEquals(0, App().run(args[1]))
         }
 
         println("Negative tests")
-        test("Invalid role: DELETE") {
-            assertEquals(5, App(args[2]).run())
+        it("Invalid role: DELETE") {
+            assertEquals(5, App().run(args[2]))
         }
-        test("Access denied") {
-            assertEquals(6, App(args[3]).run())
+        it("Access denied") {
+            assertEquals(6, App().run(args[3]))
         }
-        test("Wrong password") {
-            assertEquals(4, App(args[4]).run())
+        it("Wrong password") {
+            assertEquals(4, App().run(args[4]))
         }
-        test("Access denied") {
-            assertEquals(6, App(args[5]).run())
+        it("Access denied") {
+            assertEquals(6, App().run(args[5]))
         }
-        test("Access denied") {
-            assertEquals(6, App(args[6]).run())
+        it("Access denied") {
+            assertEquals(6, App().run(args[6]))
         }
     }
-    
-    group("Accounting") {
+
+    describe("Accounting") {
         val args: List<Array<String>> = arrayOf(
                 "-login vasya -pass 123 -res A -role READ" +
                         " -ds 2020-03-10 -de 2020-03-11 -vol 100",
@@ -105,26 +106,26 @@ object AppTest: Spek ({
                         " -ds 01.02.3012 -de 01.02.2030 -vol aaa",
                 "-login vasya -pass 123 -res A -role READ" +
                         " -ds 2020-03-11 -de 2020-03-10 -vol 100"
-        ).map{ it.split(" ").toTypedArray() }
+        ).map { it.split(" ").toTypedArray() }
 
         println("Positive tests")
-        test("-login vasya -pass 123 -res A -role READ" +
+        it("-login vasya -pass 123 -res A -role READ" +
                 " -ds 2020-03-10 -de 2020-03-11 -vol 100") {
-            assertEquals(0, App(args[0]).run())
+            assertEquals(0, App().run(args[0]))
         }
 
         println("Negative tests")
-        test("Invalid activity") {
-            assertEquals(7, App(args[1]).run())
+        it("Invalid activity") {
+            assertEquals(7, App().run(args[1]))
         }
-        test("Invalid activity") {
-            assertEquals(7, App(args[2]).run())
+        it("Invalid activity") {
+            assertEquals(7, App().run(args[2]))
         }
-        test("Access denied") {
-            assertEquals(6, App(args[3]).run())
+        it("Access denied") {
+            assertEquals(6, App().run(args[3]))
         }
-        test("Invalid activity") {
-            assertEquals(7, App(args[3]).run())
+        it("Invalid activity") {
+            assertEquals(7, App().run(args[4]))
         }
     }
 })

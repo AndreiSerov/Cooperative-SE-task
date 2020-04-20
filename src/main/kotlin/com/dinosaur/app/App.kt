@@ -10,24 +10,27 @@ import com.dinosaur.app.service.AuthorizationService
 import com.dinosaur.app.service.DBService
 import org.apache.logging.log4j.kotlin.logger
 
-class App(args: Array<String>) {
+class App() {
     private val log = logger("App")
     private val dbService = DBService(log)
-    private val argHandler: ArgHandler = ArgHandler(args)
 
-
-    fun run(): Int {
+    fun run(args: Array<String>): Int {
         log.info("Program starts!")
-
+        val argHandler = ArgHandler(args)
         // if run with any wrong arg. Program wouldn't come below
         // 'use' instead of try/finally
+        try {
+            if (!argHandler.isLoginValid(argHandler.login!!)) {
+                return ExitCodes.INVALID_LOGIN.code
+            }
+        } catch (e: KotlinNullPointerException) {
+            return ExitCodes.HELP.code
+        }
+
         dbService.use {
             it.getConnection()
             val connection = dbService.connection!!
 
-            if (!argHandler.isLoginValid(argHandler.login!!)) {
-                return ExitCodes.INVALID_LOGIN.code
-            }
             // we should exit DB session in any case
             val daoAuthentication = DAOAuthentication(connection) // not null
             val authenticationService = AuthenticationService(daoAuthentication)
