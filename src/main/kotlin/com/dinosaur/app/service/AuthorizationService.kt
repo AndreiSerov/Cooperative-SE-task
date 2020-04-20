@@ -44,7 +44,8 @@ class AuthorizationService(
         } else {
 
             for (i in resFromDB.indices) {
-                if (resFromDB[i] != query[i]) return false
+                if (resFromDB[i] != query[i])
+                    return false
             }
             return true
         }

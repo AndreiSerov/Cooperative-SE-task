@@ -11,8 +11,8 @@ class DAOAccounting(private val connection: Connection) {
                 values (?, ?, ?, ?, ?);
         """.trimIndent()
         val statement = connection.prepareStatement(query)
-        statement.setInt(1, session.user_id)
-        statement.setInt(2, session.permission_id)
+        statement.setInt(1, session.userId)
+        statement.setInt(2, session.permissionId)
         statement.setDate(3, Date.valueOf(session.ds))
         statement.setDate(4, Date.valueOf(session.de))
         statement.setInt(5, session.vol)

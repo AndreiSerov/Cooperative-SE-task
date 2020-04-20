@@ -24,15 +24,8 @@ function test() { # do another way
 total=0
 success=0
 
-test "T1.1" "" 1
-test "T1.2" "-h" 0 #было один 1 до подключения kotlinx.cli
-test "T1.3" "-q"  1 #было один 0 до подключения kotlinx.cli
-test "Т1.4" "12345"  1 #было один 0 до подключения kotlinx.cli
-test "T1.5" "-res A.B 12345"  1 #было один 0 до подключения kotlinx.cli
-test "T2.1" "-login vasya -pass 123"  0
-test "T2.2" "-login VASYA -pass 123" 2
-test "T2.3" "-login asd -pass 123"  3
-test "T2.4" "-login admin -pass 123"  4
+
+
 test "T3.1" "-login vasya -pass 123 -res A -role READ"  0
 test "T3.2" "-login vasya -pass 123 -res A -role DELETE"  5
 test "T3.3" "-login vasya -pass 123 -res A -role WRITE"  6

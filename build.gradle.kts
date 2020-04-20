@@ -16,12 +16,15 @@ plugins {
     kotlin("jvm") version "1.3.71"
     id("org.flywaydb.flyway") version "6.3.2"
     id("org.jmailen.kotlinter") version "2.3.2" // ktlinter
-//    id("io.gitlab.arturbosch.detekt").version("1.7.4")
-
+    id("io.gitlab.arturbosch.detekt").version("1.7.4")
 }
 
 kotlinter {
     reporters = arrayOf("html")
+}
+
+detekt {
+    config = files("$rootDir/settings.detekt.yml")
 }
 
 

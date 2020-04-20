@@ -12,8 +12,8 @@ class AccountingService(private val daoAccounting: DAOAccounting) {
     private var session: Session? = null
 
     fun accounting(
-        user_id: Int,
-        permission_id: Int,
+        userId: Int,
+        permissionId: Int,
         ds: String,
         de: String,
         vol: String
@@ -26,7 +26,7 @@ class AccountingService(private val daoAccounting: DAOAccounting) {
         return if (dateEnd >= dateStart && volInt >= 0) {
             // store session data into table
             session = Session(
-                    user_id, permission_id, dateStart, dateEnd, volInt
+                    userId, permissionId, dateStart, dateEnd, volInt
             )
             daoAccounting.addSession(session!!)
             ExitCodes.SUCCESS
