@@ -17,6 +17,7 @@ plugins {
     id("org.flywaydb.flyway") version "6.3.2"
     id("org.jmailen.kotlinter") version "2.3.2" // ktlinter
     id("io.gitlab.arturbosch.detekt").version("1.7.4")
+    jacoco
 }
 
 kotlinter {
@@ -27,6 +28,10 @@ detekt {
     config = files("$rootDir/settings.detekt.yml")
 }
 
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
 
 dependencies {
     // main
@@ -58,6 +63,24 @@ tasks {
         }
         testLogging {
             events("passed", "failed")
+        }
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.isEnabled = false
+            csv.isEnabled = false
+            html.destination = file("$buildDir/reports/jacoco/html")
+        }
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = "0.5".toBigDecimal()
+                }
+            }
         }
     }
 }
