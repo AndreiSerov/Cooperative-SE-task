@@ -3,14 +3,14 @@ package com.dinosaur.app
 import com.dinosaur.app.dao.DAOAuthentication
 import com.dinosaur.app.domain.User
 import com.dinosaur.app.service.AuthenticationService
-import org.spekframework.spek2.Spek
 import io.mockk.every
 import io.mockk.mockk
-import org.spekframework.spek2.style.specification.describe
 import kotlin.test.assertEquals
+import org.spekframework.spek2.Spek
+import org.spekframework.spek2.style.specification.describe
 
 object AuthenticationTest : Spek({
-    describe("A calculator") {
+    describe("Authentication") {
         val user = User(
                 1,
                 "admin",

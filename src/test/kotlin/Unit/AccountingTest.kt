@@ -1,4 +1,4 @@
 package com.dinosaur.app
 
-object AuthoriztionTest {
+object AccountingTest {
 }
