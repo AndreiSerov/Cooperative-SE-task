@@ -49,6 +49,7 @@ dependencies {
     testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:latest.release")
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
+    testImplementation("io.mockk:mockk:1.10.0")
 
 }
 

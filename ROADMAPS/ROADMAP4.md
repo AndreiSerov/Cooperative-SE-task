@@ -5,6 +5,7 @@
 2. Провести исследование - (80 мин.) 
     1. Gradle
     2. Spek
+    3. Mock
     3. JaCoCo
     4. ktlint
     5. Statteic code report
@@ -18,6 +19,7 @@
     1. Обновить зависимости
     2. Написать тесты
     3. Добавить таски в грейдл
+    4. Написать юнит тесты с подменой реализации
 
 5. Подключить проверку стиля кода ktlint - (90 мин.) **15 мин.**
     1. Добавить плагин в файл билда грейдла
@@ -45,3 +47,8 @@
 4. [ktlint](https://github.com/pinterest/ktlint)
 
 5. [Static code report](https://arturbosch.github.io/detekt/)
+
+6. Mock
+    1. [What is mocking?](https://medium.com/@piraveenaparalogarajah/what-is-mocking-in-testing-d4b0f2dbe20a)
+    2. [Choose framework for mocking](https://medium.com/@prashantspol/mockk-better-to-way-to-mock-in-kotlin-than-mockito-1b659c5232ec)
+    3. [Read documentation](https://github.com/mockk/mockk)
