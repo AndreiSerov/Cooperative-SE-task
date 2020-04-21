@@ -1,4 +1,4 @@
 language: java
 
-script: ./gradlew build && && ./gradlew jacocoTestReport
+script: ./gradlew build && ./gradlew jacocoTestReport
 after_success: bash <(curl -s https://codecov.io/bash)
