@@ -7,10 +7,10 @@ import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
-import java.time.LocalDate
-import kotlin.test.assertEquals
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
+import java.time.LocalDate
+import kotlin.test.assertEquals
 
 object AccountingTest : Spek({
     describe("Accounting") {

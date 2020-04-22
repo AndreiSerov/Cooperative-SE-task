@@ -18,6 +18,7 @@ plugins {
     id("org.jmailen.kotlinter") version "2.3.2" // ktlinter
     id("io.gitlab.arturbosch.detekt").version("1.7.4")
     jacoco
+    war
 }
 
 kotlinter {
