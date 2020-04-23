@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "Cooperative-SE-task"
-rootProject.buildFileName = "build.gradle.kts"
+include("app")
