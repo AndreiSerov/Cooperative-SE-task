@@ -9,6 +9,7 @@ gretty {
 }
 
 dependencies {
+    implementation(kotlin("stdlib-jdk7"))
     implementation(kotlin("stdlib-jdk8"))
     implementation("javax.servlet:javax.servlet-api:4.0.1")
 }
