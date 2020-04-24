@@ -9,3 +9,4 @@
 
 rootProject.name = "Cooperative-SE-task"
 include("app")
+include("web")

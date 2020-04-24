@@ -18,17 +18,10 @@ plugins {
     kotlin("jvm") version "1.3.71"
 }
 
-//dependencies {
-
-//    // main
-//    //web
-////    providedCompile("javax.servlet:javax.servlet-api:3.1.0")
-//    // test
-//    testImplementation(kotlin("test-junit"))
-//}
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 }
+
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "1.8"
