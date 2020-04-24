@@ -6,7 +6,6 @@
  */
 
 repositories {
-    jcenter()
     maven {
         url = uri("https://kotlin.bintray.com/kotlinx")
     }
@@ -18,9 +17,6 @@ plugins {
     id("org.jmailen.kotlinter") version "2.3.2" // ktlinter
     id("io.gitlab.arturbosch.detekt").version("1.7.4")
     jacoco
-    //web
-//    id("org.gretty") version "3.0.2"
-//    war
 }
 
 kotlinter {
