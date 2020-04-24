@@ -8,12 +8,14 @@
     3. Kotlin HTML templating languages
     4. Heroku
 
-3. Добавить плагины и зависимости в bulid.gradle.kts
+3. Добавить плагины и зависимости в `bulid.gradle.kts`
 
-4. Создать класс Controller, который наследуется от HttpServlet()
-    1. Переопределить методы doGet и doPost
+4. Создать класс `Controller`, который наследуется от `HttpServlet()`
+    1. Переопределить методы `doGet` и `doPost`
+    2. Добавить параметр `id` в метод `doGet`
+    3. 
     
-5. Сверстать файл index.html
+5. Сверстать файл `index.html`
 
 6. Подключить шаблонизатор и изменить index.html
 

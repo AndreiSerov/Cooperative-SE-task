@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-
 @WebServlet(name = "Echo", value = ["/echo/*"])
 class Controller: HttpServlet() {
 
@@ -13,6 +12,9 @@ class Controller: HttpServlet() {
         // TODO check cases "get123"
         if (!req.requestURL.contains("/echo/get")) {
             res.sendError(404, "Page not found")
+        } else {
+            val id = req.getParameter("id")
+            res.writer.println(id)
         }
     }
 
