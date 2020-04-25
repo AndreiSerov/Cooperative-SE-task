@@ -17,7 +17,7 @@
     
 5. Сверстать файл `index.html`
 
-6. Подключить шаблонизатор и изменить index.html
+6. Сверстать `res.jsp`
 
 7. Задеплоить проект на Heroku
     1. Разовое развертывание
@@ -39,4 +39,3 @@
 3. Kotlin HTML templating languages    
 
 4. Heroku
-    
