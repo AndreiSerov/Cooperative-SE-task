@@ -22,7 +22,7 @@
 
 
 ## Запуск
-Перейти по пути `./build/libs/`.
+Перейти по пути `./app/build/libs/`.
 Запустить программу коммандой `java -jar *.jar` и передать аргументы.
 
 ## [WebApp on Heroku](http://testtaskaaa.herokuapp.com)
