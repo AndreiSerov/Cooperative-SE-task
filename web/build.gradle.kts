@@ -6,16 +6,17 @@ plugins {
 }
 
 gretty {
-    contextPath = '/'
+    contextPath = "/"
+    servletContainer = "jetty9.4"
 }
 
 val staging by configurations.creating
 
 dependencies {
-    staging("com.heroku:webapp-runner-main:9.0.31.0")
+    staging("org.eclipse.jetty:jetty-runner:9.4.28.v20200408")
 
     implementation(kotlin("stdlib-jdk8"))
-    implementation("javax.servlet:javax.servlet-api:4.0.1")
+    providedCompile("javax.servlet:javax.servlet-api:4.0.1")
 }
 
 // Heroku
@@ -23,7 +24,7 @@ tasks {
     val copyToLib by registering(Copy::class) {
         into("$buildDir/server")
         from(staging) {
-            include("webapp-runner*")
+            include("jetty-runner*")
         }
     }
     val stage by registering {
