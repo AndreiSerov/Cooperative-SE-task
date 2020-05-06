@@ -15,7 +15,7 @@
     </filter-mapping>
 
     <listener>
-        <listener-class>com.dinosaur.app.servlet.GuiceServletConfig</listener-class>
+        <listener-class>com.dinosaur.app.GuiceServletConfig</listener-class>
     </listener>
 
 </web-app>

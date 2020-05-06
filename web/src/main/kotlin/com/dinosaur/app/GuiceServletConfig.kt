@@ -1,6 +1,9 @@
-package com.dinosaur.app.servlet
+package com.dinosaur.app
 
-import com.dinosaur.app.servlet.logger.InjectLogger
+import com.dinosaur.app.servlet.ActivityServlet
+import com.dinosaur.app.servlet.AuthorityServlet
+import com.dinosaur.app.servlet.Controller
+import com.dinosaur.app.servlet.UserServlet
 import com.google.inject.Guice
 import com.google.inject.Injector
 import com.google.inject.matcher.Matchers

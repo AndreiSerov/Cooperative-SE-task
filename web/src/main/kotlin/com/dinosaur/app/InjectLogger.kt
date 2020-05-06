@@ -1,4 +1,4 @@
-package com.dinosaur.app.servlet.logger
+package com.dinosaur.app
 
 import com.google.inject.MembersInjector
 import com.google.inject.TypeLiteral
