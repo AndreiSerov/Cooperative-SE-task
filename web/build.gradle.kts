@@ -19,6 +19,10 @@ dependencies {
     implementation("com.google.inject:guice:4.2.3")
     implementation("com.google.inject.extensions:guice-servlet:4.2.3")
     providedCompile("javax.servlet:javax.servlet-api:4.0.1")
+    //logger
+    implementation("org.apache.logging.log4j:log4j-api-kotlin:1.0.0")
+    implementation("org.apache.logging.log4j:log4j-api:2.13.1")
+    implementation("org.apache.logging.log4j:log4j-core:2.13.1")
 }
 
 // Heroku
