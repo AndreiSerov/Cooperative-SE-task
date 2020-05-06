@@ -5,10 +5,15 @@
 2. Провести исследование - (10 мин.)
     1. Guice
     
-3. Добавить зависимости библотеки guice в грейдл
+3. Добавить зависимости библотеки `guice` в грейдл  - (1 мин.)
 
-4.
-    
+4. Создать `GuiceServletConfig` - (90 мин.)
+    1. прописать `UserServlet`, `AuthorityServlet`, `ActivityServlet`  
+    (Все сервлеты работают с `/ajax/[servletname]`)
+    2. В каждом сервлете переопределить метод `service(request, responce)`
+
+5. Заинжектить Логгеры серверной части в сервлеты через guice - (30 мин.)
+
 ### Исследовательские задачи
 
-1. (Guice)[https://github.com/google/guice/wiki]
+1. [Guice](https://github.com/google/guice/wiki)

@@ -1,12 +1,13 @@
 package com.dinosaur.app.servlet
 
+import com.google.inject.Singleton
 import java.net.URLEncoder.encode
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@WebServlet(name = "Echo", urlPatterns = ["echo/*", "echo/get", "echo/post"])
+@Singleton
 class Controller: HttpServlet() {
 
     override fun doGet(req: HttpServletRequest,res: HttpServletResponse) {
