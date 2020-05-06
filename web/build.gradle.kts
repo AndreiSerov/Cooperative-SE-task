@@ -16,6 +16,8 @@ dependencies {
     staging("org.eclipse.jetty:jetty-runner:9.4.28.v20200408")
 
     implementation(kotlin("stdlib-jdk8"))
+    implementation("com.google.inject:guice:4.2.3")
+    implementation("com.google.inject.extensions:guice-servlet:4.2.3")
     providedCompile("javax.servlet:javax.servlet-api:4.0.1")
 }
 

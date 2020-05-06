@@ -16,7 +16,6 @@ class Controller: HttpServlet() {
         } else {
             val id = req.getParameter("id")
             req.setAttribute("id", id)
-            println(req.queryString)
             req.getRequestDispatcher("../res.jsp")
                     .forward(req, res)
         }
@@ -27,7 +26,7 @@ class Controller: HttpServlet() {
             res.sendError(404, "Page not found. POST")
         } else {
             val id = req.getParameter("input")
-            res.sendRedirect("get?id=${encode(id)}")
+            res.sendRedirect("get?id=${encode(id, Charsets.UTF_8)}")
         }
     }
 }
