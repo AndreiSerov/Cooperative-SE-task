@@ -19,6 +19,9 @@ class UserServlet: HttpServlet() {
             throw ServletException("non-HTTP request or response")
         }
         val stackTrace = Thread.currentThread().stackTrace
-        res.writer.println("${stackTrace[2].className}")
+
+        res.writer.println("Method called from: ${stackTrace[1].className}\n" +
+                "\nFull stacktrace:" )
+        stackTrace.map { res.writer.println(it.className) }
     }
 }

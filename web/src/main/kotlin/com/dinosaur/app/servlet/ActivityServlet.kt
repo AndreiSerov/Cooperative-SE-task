@@ -17,6 +17,10 @@ class ActivityServlet: HttpServlet() {
                         res is HttpServletResponse)) {
             throw ServletException("non-HTTP request or response")
         }
-        res.writer.println("ActivityServlet")
+        val stackTrace = Thread.currentThread().stackTrace
+
+        res.writer.println("Method called from: ${stackTrace[1].className}\n" +
+                "\nFull stacktrace:" )
+        stackTrace.map { res.writer.println(it.className) }
     }
 }
