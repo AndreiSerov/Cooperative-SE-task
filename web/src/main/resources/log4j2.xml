@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="Web" status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>
+                    %d"\n"%5p %c{1}"\n"%F:%L"\n"%m%n
+                </Pattern>
+            </PatternLayout>
+        </Console>
+        <File name="File" fileName="web.log">
+            <PatternLayout>
+                <Pattern>
+                    %d"\n"%5p %c{1}"\n"%F:%L"\n"%m%n
+                </Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="TRACE">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
