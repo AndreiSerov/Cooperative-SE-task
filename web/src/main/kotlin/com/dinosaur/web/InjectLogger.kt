@@ -1,4 +1,4 @@
-package com.dinosaur.app
+package com.dinosaur.web
 
 import com.google.inject.MembersInjector
 import com.google.inject.TypeLiteral
@@ -8,12 +8,16 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.kotlin.KotlinLogger
 import org.apache.logging.log4j.spi.ExtendedLogger
 import java.lang.reflect.Field
+import kotlin.annotation.AnnotationRetention.RUNTIME
+import kotlin.annotation.AnnotationTarget.FIELD
 
 
-@Target(AnnotationTarget.FIELD)
-@Retention(AnnotationRetention.RUNTIME)
+@Target(FIELD)
+@Retention(RUNTIME)
 annotation class InjectLogger {
-
+    /*
+    *Custom annotation for bind logger injection in servlets
+    * */
     class Log4JMembersInjector<T>(private val field: Field) : MembersInjector<T> {
         private val logger: KotlinLogger = KotlinLogger(
                 LogManager.getLogger(field.declaringClass) as ExtendedLogger

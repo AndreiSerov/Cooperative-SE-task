@@ -1,6 +1,6 @@
-package com.dinosaur.app.servlet
+package com.dinosaur.web.servlet
 
-import com.dinosaur.app.InjectLogger
+import com.dinosaur.web.InjectLogger
 import com.google.inject.Singleton
 import org.apache.logging.log4j.kotlin.KotlinLogger
 import java.io.IOException
