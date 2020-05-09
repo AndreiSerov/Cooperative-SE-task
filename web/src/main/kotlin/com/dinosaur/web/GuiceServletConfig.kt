@@ -10,8 +10,7 @@ import com.google.inject.matcher.Matchers
 import com.google.inject.servlet.GuiceServletContextListener
 import com.google.inject.servlet.ServletModule
 
-
-class GuiceServletConfig(): GuiceServletContextListener() {
+class GuiceServletConfig() : GuiceServletContextListener() {
     override fun getInjector(): Injector {
         return Guice.createInjector(object : ServletModule() {
             override fun configureServlets() {
@@ -30,5 +29,4 @@ class GuiceServletConfig(): GuiceServletContextListener() {
             }
         })
     }
-
 }

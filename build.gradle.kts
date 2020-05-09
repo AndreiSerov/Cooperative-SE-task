@@ -14,6 +14,13 @@ allprojects {
 }
 plugins {
     kotlin("jvm") version "1.3.71"
+    id("org.jmailen.kotlinter") version "2.3.2" // ktlinter
+    id("io.gitlab.arturbosch.detekt").version("1.7.4")
+}
+
+
+kotlinter {
+    reporters = arrayOf("html")
 }
 
 dependencies {

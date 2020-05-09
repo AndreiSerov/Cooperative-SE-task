@@ -2,19 +2,18 @@ package com.dinosaur.web.servlet
 
 import com.dinosaur.web.InjectLogger
 import com.google.inject.Singleton
-import org.apache.logging.log4j.kotlin.KotlinLogger
 import java.net.URLEncoder.encode
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-
+import org.apache.logging.log4j.kotlin.KotlinLogger
 
 @Singleton
-class Controller: HttpServlet() {
+class Controller : HttpServlet() {
     @InjectLogger
     lateinit var logger: KotlinLogger
 
-    override fun doGet(req: HttpServletRequest,res: HttpServletResponse) {
+    override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
         // TODO check cases "get123"
         if (!req.requestURL.contains("/echo/get")) {
             logger.error("Wrong Url")

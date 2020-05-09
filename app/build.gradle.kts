@@ -14,17 +14,7 @@ repositories {
 plugins {
     kotlin("jvm")
     id("org.flywaydb.flyway") version "6.3.2"
-    id("org.jmailen.kotlinter") version "2.3.2" // ktlinter
-    id("io.gitlab.arturbosch.detekt").version("1.7.4")
     jacoco
-}
-
-kotlinter {
-    reporters = arrayOf("html")
-}
-
-detekt {
-    config = files("$rootDir/settings.detekt.yml")
 }
 
 jacoco {
@@ -42,8 +32,9 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api-kotlin:1.0.0")
     implementation("org.apache.logging.log4j:log4j-api:2.13.1")
     implementation("org.apache.logging.log4j:log4j-core:2.13.1")
-    //web
-//    providedCompile("javax.servlet:javax.servlet-api:3.1.0")
+    // guice
+    implementation("com.google.inject:guice:4.2.3")
+    implementation("com.google.inject.extensions:guice-servlet:4.2.3")
     // test
     testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:latest.release")
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:latest.release")
