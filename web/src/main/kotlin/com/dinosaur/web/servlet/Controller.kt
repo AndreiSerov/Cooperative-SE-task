@@ -35,7 +35,7 @@ class Controller: HttpServlet() {
         } else {
             logger.info("/echo/post")
             val id = req.getParameter("input")
-            res.sendRedirect("get?id=${encode(id, "utf-8")}")
+            res.sendRedirect("get?id=${encode(id, Charsets.UTF_8.toString())}")
         }
     }
 }
